@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Todo} from '../../share/todo.model';
 
 @Component({
   selector: 'app-todo',
   template: `
-    <input type="checkbox" [checked]="todo.done"> <label>{{ todo.text }}</label>
+    <input type="checkbox" [checked]="todo.done"> <label>{{ todo.text }}</label> <button class="todo_delete_button" (click)="deleteTodo(todo)">-</button>
   `,
   styles: [`
       :host{
@@ -45,16 +45,22 @@ import {Todo} from '../../share/todo.model';
     }
     input:checked + label {
       text-decoration: line-through;
+    }  
+    button.todo_delete_button {
+      background-color: red;
     }
   `]
 })
 export class TodoComponent implements OnInit {
 
   @Input() todo: Todo;
-
+  @Output() onTodoDeleted = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
   }
 
+  deleteTodo(todo: Todo) {
+    this.onTodoDeleted.emit(todo);
+  }
 }

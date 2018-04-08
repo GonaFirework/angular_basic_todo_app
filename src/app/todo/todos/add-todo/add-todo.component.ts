@@ -16,6 +16,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
       display: inline-block;
       font-size: 18px;
       border: none;
+      width: 90%;
     }
     input:focus, button:focus {
       outline: none;

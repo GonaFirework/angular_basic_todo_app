@@ -4,7 +4,7 @@
 </div>
 <div>
   <div *ngFor="let todo of todos" (click)="toggleTodo(todo)">
-    <app-todo [todo]="todo"></app-todo>
+    <app-todo [todo]="todo" (onTodoDeleted)="deleteTodo($event)"></app-todo>
   </div>
 </div>
 <div>

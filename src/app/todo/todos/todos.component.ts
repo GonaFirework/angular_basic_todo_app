@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Todo} from '../share/todo.model';
 import {interval} from 'rxjs/observable/interval';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-todos',
@@ -9,10 +10,9 @@ import {interval} from 'rxjs/observable/interval';
 })
 export class TodosComponent implements OnInit {
 
-  newText = '';
   todos: Todo[];
   today: Date = new Date();
-  counter = interval(5000);
+  counter = interval(1000);
 
   constructor() {
     this.todos = [
@@ -38,7 +38,7 @@ export class TodosComponent implements OnInit {
     });
   }
 
-  changeTime(): void {
-
+  deleteTodo(todo: Todo) {
+    this.todos.splice(this.todos.indexOf(todo),  1);
   }
 }
